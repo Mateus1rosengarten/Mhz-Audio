@@ -3,10 +3,10 @@ import { cn } from "@/lib/utils";
 import { Container } from "./Container";
 
 type SectionProps = {
-  id?: string;
+  id?: string | undefined;
   children: ReactNode;
-  className?: string;
-  containerClassName?: string;
+  className?: string | undefined;
+  containerClassName?: string | undefined;
 };
 
 export function Section({ id, children, className, containerClassName }: SectionProps) {
@@ -18,11 +18,11 @@ export function Section({ id, children, className, containerClassName }: Section
 }
 
 type SectionHeadingProps = {
-  eyebrow?: string;
+  eyebrow?: string | undefined;
   title: string;
-  description?: string;
+  description?: string | undefined;
   align?: "left" | "center";
-  className?: string;
+  className?: string | undefined;
 };
 
 export function SectionHeading({
