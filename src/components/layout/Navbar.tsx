@@ -4,7 +4,7 @@ import { Container } from "@/components/common/Container";
 import { Logo } from "@/components/common/Logo";
 import { ActionButton } from "@/components/common/ActionButton";
 import { navLinks } from "@/config/site";
-import { openWhatsApp } from "@/lib/whatsapp";
+import { defaultContactMessage, openWhatsApp } from "@/lib/whatsapp";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
@@ -21,11 +21,11 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        isScrolled || isMenuOpen ? "glass-nav" : "border-b border-transparent",
+        "fixed inset-x-0 top-0 z-50 transition-all duration-300 bg-background sm:bg-transparent",
+        isScrolled || isMenuOpen ? "bg-background sm:!bg-card" : "border-b border-transparent",
       )}
     >
-      <Container className="flex h-18 items-center justify-between">
+      <Container className="flex h-18 items-center justify-between py-4">
         <Logo />
 
         <nav className="hidden items-center gap-1 md:flex">
@@ -33,7 +33,7 @@ export function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-surface hover:text-foreground"
+              className="rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition-colors  hover:text-white"
             >
               {link.label}
             </a>
@@ -41,9 +41,9 @@ export function Navbar() {
         </nav>
 
         <div className="hidden md:block">
-          <ActionButton onClick={() => openWhatsApp()}>
+          <ActionButton onClick={() => openWhatsApp(defaultContactMessage)}>
             <MessageCircle />
-            Solicitar Orçamento
+            Fale Conosco
           </ActionButton>
         </div>
 
@@ -72,7 +72,7 @@ export function Navbar() {
             ))}
             <ActionButton className="mt-3 w-full" onClick={() => openWhatsApp()}>
               <MessageCircle />
-              Solicitar Orçamento
+              Fale Conosco
             </ActionButton>
           </nav>
         </Container>

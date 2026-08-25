@@ -6,10 +6,11 @@ export type QuoteRequest = {
   email: string;
   eventType: string;
   eventDate: string;
+  eventLocation: string;
   message: string;
 };
 
-const formatDate = (isoDate: string) => {
+const formatEventDate = (isoDate: string) => {
   if (!isoDate) return "A definir";
   const [year, month, day] = isoDate.split("-");
   return day && month && year ? `${day}/${month}/${year}` : isoDate;
@@ -18,21 +19,22 @@ const formatDate = (isoDate: string) => {
 export const buildWhatsAppUrl = (text: string) =>
   `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(text)}`;
 
-export const defaultQuoteMessage =
-  "Olá! Gostaria de solicitar um orçamento para o meu evento.";
+export const defaultQuoteMessage = "Olá! Gostaria de solicitar um orçamento para o meu evento.";
+export const defaultContactMessage =
+  "Olá, tudo bem? Tenho uma dúvida e gostaria de falar com alguém da equipe.";
 
-export const buildQuoteMessage = (data: QuoteRequest) =>
-  [
-    "Olá! Gostaria de solicitar um orçamento.",
-    "",
-    `Nome: ${data.name}`,
-    `WhatsApp: ${data.phone}`,
-    `Email: ${data.email || "Não informado"}`,
-    `Tipo de evento: ${data.eventType}`,
-    `Data: ${formatDate(data.eventDate)}`,
-    `Mensagem: ${data.message || "—"}`,
-  ].join("\n");
+export function buildQuoteMessage(data: QuoteRequest) {
+  return `*Olá! Gostaria de solicitar um orçamento.*
 
-export const openWhatsApp = (text: string = defaultQuoteMessage) => {
+*Nome:* ${data.name}
+*WhatsApp:* ${data.phone}${data.email ? `\n*Email:* ${data.email}` : ""}
+
+*Tipo de evento:* ${data.eventType}${data.eventDate ? `\n*Data:* ${formatEventDate(data.eventDate)}` : ""}${data.eventLocation ? `\n*Local:* ${data.eventLocation}` : ""}
+
+*Mensagem:*
+
+${data.message}`;
+}
+export const openWhatsApp = (text = defaultQuoteMessage) => {
   window.open(buildWhatsAppUrl(text), "_blank", "noopener,noreferrer");
 };

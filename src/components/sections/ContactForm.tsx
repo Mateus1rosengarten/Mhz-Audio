@@ -5,21 +5,42 @@ import { ActionButton } from "@/components/common/ActionButton";
 import { eventTypes } from "@/config/site";
 import { buildQuoteMessage, openWhatsApp, type QuoteRequest } from "@/lib/whatsapp";
 
+const brazilianPhoneRegex = /^(?:\+55\s?)?(?:\(?([1-9]{2})\)?\s?)(?:9\d{4}|\d{4})-?\d{4}$/;
+
 const quoteSchema = z.object({
   name: z.string().trim().min(2, "Informe seu nome").max(100, "Nome muito longo"),
   phone: z
     .string()
     .trim()
+    .regex(brazilianPhoneRegex, "Informe um WhatsApp brasileiro válido")
     .min(10, "Informe um WhatsApp válido com DDD")
     .max(20, "WhatsApp inválido"),
-  email: z
+  email: z.string().trim().max(255, "Email muito longo").email("Email inválido").or(z.literal("")),
+  eventType: z.string().trim().min(1, "Selecione o tipo de evento"),
+  eventDate: z
     .string()
     .trim()
-    .max(255, "Email muito longo")
-    .email("Email inválido")
-    .or(z.literal("")),
-  eventType: z.string().trim().min(1, "Selecione o tipo de evento"),
-  eventDate: z.string().trim().max(20).optional().default(""),
+    .min(1, "Informe a data do evento")
+    .refine((value) => {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      const eventDate = new Date(`${value}T00:00:00`);
+
+      return eventDate >= today;
+    }, "A data do evento não pode ser anterior a hoje")
+    .refine((value) => {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      const maxDate = new Date(today);
+      maxDate.setFullYear(maxDate.getFullYear() + 5);
+
+      const eventDate = new Date(`${value}T00:00:00`);
+
+      return eventDate <= maxDate;
+    }, "A data do evento não pode ser superior a 5 anos"),
+  eventLocation: z.string().trim().max(200, "Local muito longo").optional().default(""),
   message: z.string().trim().max(1000, "Mensagem muito longa"),
 });
 
@@ -29,11 +50,12 @@ const initialValues: QuoteRequest = {
   email: "",
   eventType: "",
   eventDate: "",
+  eventLocation: "",
   message: "",
 };
 
 const fieldClass =
-  "h-12 w-full rounded-xl border border-input bg-background px-4 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary";
+  "h-12 w-full  border border-input bg-background px-4 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary";
 
 export function ContactForm() {
   const [values, setValues] = useState<QuoteRequest>(initialValues);
@@ -60,8 +82,30 @@ export function ContactForm() {
     openWhatsApp(buildQuoteMessage({ ...values, ...result.data }));
   };
 
+  function formatBrazilianPhone(value: string) {
+    const digits = value.replace(/\D/g, "").slice(0, 11);
+
+    if (digits.length <= 2) {
+      return digits.length ? `(${digits}` : "";
+    }
+
+    if (digits.length <= 6) {
+      return `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
+    }
+
+    if (digits.length <= 10) {
+      return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`;
+    }
+
+    return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
+  }
+
   return (
-    <form onSubmit={handleSubmit} noValidate className="surface-card p-6 sm:p-8">
+    <form
+      onSubmit={handleSubmit}
+      noValidate
+      className="!bg-surface/40 surface-card p-6 sm:p-8 rounded-lg "
+    >
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Nome" error={errors.name}>
           <input
@@ -76,11 +120,11 @@ export function ContactForm() {
         <Field label="WhatsApp" error={errors.phone}>
           <input
             className={fieldClass}
-            placeholder="(11) 99999-9999"
+            placeholder="(41) 99999-9999"
             inputMode="tel"
             maxLength={20}
             value={values.phone}
-            onChange={(e) => setField("phone", e.target.value)}
+            onChange={(e) => setField("phone", formatBrazilianPhone(e.target.value))}
           />
         </Field>
 
@@ -110,12 +154,28 @@ export function ContactForm() {
           </select>
         </Field>
 
-        <Field label="Data do evento" error={errors.eventDate} className="sm:col-span-2">
+        <Field label="Data do evento" error={errors.eventDate}>
           <input
             className={fieldClass}
             type="date"
+            min={new Date().toISOString().split("T")[0]}
+            max={
+              new Date(new Date().setFullYear(new Date().getFullYear() + 5))
+                .toISOString()
+                .split("T")[0]
+            }
             value={values.eventDate}
             onChange={(e) => setField("eventDate", e.target.value)}
+          />
+        </Field>
+
+        <Field label="Local do evento" error={errors.eventLocation}>
+          <input
+            className={fieldClass}
+            placeholder="Cidade ou endereço do evento"
+            maxLength={200}
+            value={values.eventLocation}
+            onChange={(e) => setField("eventLocation", e.target.value)}
           />
         </Field>
 
@@ -130,11 +190,11 @@ export function ContactForm() {
         </Field>
       </div>
 
-      <ActionButton type="submit" size="lg" className="mt-6 w-full">
+      <ActionButton type="submit" size="lg" className="mt-6 w-full sm:w-1/4">
         <MessageCircle />
         Enviar pelo WhatsApp
       </ActionButton>
-      <p className="mt-3 text-center text-xs text-muted-foreground">
+      <p className="mt-4 sm:mt-3 text-center text-xs text-muted-foreground">
         Ao enviar, abriremos o WhatsApp com a sua mensagem já preenchida.
       </p>
     </form>

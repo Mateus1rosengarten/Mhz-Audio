@@ -6,22 +6,36 @@ import { openWhatsApp } from "@/lib/whatsapp";
 
 export function CallToAction() {
   return (
-    <section className="py-8">
-      <Container>
+    <section>
+      <Container className="!px-0 ">
         <Reveal>
-          <div className="overflow-hidden rounded-3xl bg-primary px-8 py-16 text-center sm:px-16 sm:py-20">
-            <h2 className="mx-auto max-w-2xl text-3xl leading-tight font-semibold text-balance text-primary-foreground sm:text-4xl">
-              Vamos tornar seu evento inesquecível?
+          <div className="overflow-hidden flex flex-col rounded-xl bg-linear-to-r from-primary/60 via-[#4F7FF5] to-button/60 px-8 py-16 text-center sm:px-16 sm:py-20">
+            {" "}
+            <h2 className="mx-auto max-w-2xl text-3xl leading-tight font-bold text-balance text-primary-foreground sm:text-4xl ">
+              Vamos tornar seu evento{" "}
+              <span className="text-background font-extrabold underline"> inesquecível?</span>
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-primary-foreground/80 sm:text-base">
-              Conte o formato, a data e o local. Em poucos minutos preparamos uma proposta
-              completa de som, iluminação e entretenimento.
-            </p>
+            <div className="flex flex-col gap-8 mx-auto mt-2 max-w-xl text-sm leading-relaxed text-primary-foreground/80 sm:text-base">
+              <p className="text-center sm:text-left">
+                {" "}
+                Conte o formato, a data e o local. Em poucos minutos preparamos uma proposta
+                completa.
+              </p>
+
+              <p className="text-center font-bold text-xl">
+                {" "}
+                Cuide do que realmente importa para você e deixe tudo isso por nossa conta.
+              </p>
+            </div>
             <ActionButton
               size="lg"
               variant="light"
-              className="mt-9"
-              onClick={() => openWhatsApp()}
+              className="mx-auto mt-9 w-full sm:w-1/2"
+              onClick={() => {
+                document.getElementById("contato")?.scrollIntoView({
+                  behavior: "smooth",
+                });
+              }}
             >
               <MessageCircle />
               Solicitar orçamento via WhatsApp

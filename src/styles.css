@@ -44,6 +44,7 @@
   --color-ring: var(--ring);
   --color-surface: var(--surface);
   --color-surface-elevated: var(--surface-elevated);
+  --color-button: var(--button);
 
   --shadow-soft: 0 1px 2px oklch(0 0 0 / 0.4), 0 12px 32px -12px oklch(0 0 0 / 0.6);
   --shadow-elevated: 0 2px 4px oklch(0 0 0 / 0.4), 0 28px 60px -24px oklch(0 0 0 / 0.75);
@@ -66,6 +67,8 @@
   --primary: oklch(0.546 0.215 262.9);
   --primary-hover: oklch(0.623 0.188 259.8);
   --primary-foreground: oklch(1 0 0);
+
+  --button: #8946fa;
 
   --secondary: oklch(0.242 0.004 285);
   --secondary-foreground: oklch(1 0 0);
@@ -156,4 +159,18 @@
     transform: none;
     transition: none;
   }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 60s linear infinite;
 }

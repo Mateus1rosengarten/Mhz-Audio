@@ -1,33 +1,13 @@
 import { Check } from "lucide-react";
-import aboutImage from "@/assets/about-setup.jpg";
 import { Section, SectionHeading } from "@/components/common/Section";
 import { Reveal } from "@/components/common/Reveal";
 
-const capabilities = [
-  "Sonorização",
-  "Iluminação",
-  "DJs",
-  "Bandas",
-  "Estrutura para eventos",
-];
+const capabilities = ["Sonorização", "Iluminação", "DJs", "Bandas", "Estrutura para eventos"];
 
 export function About() {
   return (
     <Section id="sobre">
       <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
-        <Reveal className="order-2 lg:order-1">
-          <div className="overflow-hidden rounded-3xl border border-border shadow-elevated">
-            <img
-              src={aboutImage}
-              alt="Equipe montando estrutura de som e iluminação em um evento"
-              loading="lazy"
-              width={1104}
-              height={1312}
-              className="aspect-4/5 w-full object-cover"
-            />
-          </div>
-        </Reveal>
-
         <Reveal delay={100} className="order-1 lg:order-2">
           <SectionHeading
             align="left"

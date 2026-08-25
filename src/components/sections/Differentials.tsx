@@ -2,65 +2,58 @@ import type { LucideIcon } from "lucide-react";
 import { Award, Boxes, Headphones, Layers, Users, Wrench } from "lucide-react";
 import { Section, SectionHeading } from "@/components/common/Section";
 import { Reveal } from "@/components/common/Reveal";
+import { TestimonialsMarquee } from "./TestimonalMarquee";
+import { CallToAction } from "./CallToAction";
 
 type Differential = { icon: LucideIcon; title: string; description: string };
 
 const differentials: Differential[] = [
   {
     icon: Award,
-    title: "Mais de 10 anos de experiência",
-    description: "Centenas de eventos entregues com pontualidade e consistência técnica.",
+    title: "+ 10 anos no mercado",
+    description:
+      "Experiência na realização de casamentos, eventos corporativos, festas e shows de todos os portes.",
   },
   {
     icon: Boxes,
-    title: "Equipamentos profissionais",
-    description: "Marcas de referência mundial, revisadas antes de cada montagem.",
+    title: "Equipamentos Profissionais",
+    description:
+      "Estrutura moderna com equipamentos de som e iluminação para entregar máxima qualidade em cada evento.",
   },
   {
     icon: Users,
-    title: "Equipe especializada",
-    description: "Técnicos de áudio, luz e rigging dedicados ao seu evento.",
-  },
-  {
-    icon: Headphones,
-    title: "Atendimento personalizado",
-    description: "Um consultor acompanha seu projeto do briefing ao encerramento.",
-  },
-  {
-    icon: Wrench,
-    title: "Montagem e suporte completo",
-    description: "Instalação, testes e operação assistida durante todo o evento.",
-  },
-  {
-    icon: Layers,
-    title: "Solução completa",
-    description: "Som, luz, palco e entretenimento com um único fornecedor.",
+    title: "Equipe Especializada",
+    description:
+      "Profissionais qualificados para realizar a montagem, operação e suporte técnico durante todo o evento.",
   },
 ];
 
 export function Differentials() {
   return (
-    <Section>
+    <Section id="sobre">
       <Reveal>
-        <SectionHeading
-          eyebrow="Diferenciais"
-          title="Por que produtores e noivos confiam na nossa estrutura"
-        />
+        <SectionHeading title="Por que nossos clientes confiam na nossa estrutura" />
       </Reveal>
 
-      <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-16 grid gap-12 md:grid-cols-3">
         {differentials.map((item, index) => (
-          <Reveal key={item.title} delay={index * 70}>
-            <article className="h-full rounded-2xl border border-border p-6 transition-colors duration-300 hover:border-primary/40 hover:bg-surface">
-              <item.icon className="size-5 text-primary" />
-              <h3 className="mt-5 text-base font-semibold">{item.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+          <Reveal key={item.title} delay={index * 80}>
+            <div className="text-center">
+              <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-card">
+                <item.icon className="size-6 text-primary" />
+              </div>
+
+              <h3 className="mt-5 text-xl font-semibold ">{item.title}</h3>
+
+              <p className="mt-3 text-muted-foreground  text-sm leading-relaxed">
                 {item.description}
               </p>
-            </article>
+            </div>
           </Reveal>
         ))}
       </div>
+      <TestimonialsMarquee />
+      <CallToAction />
     </Section>
   );
 }

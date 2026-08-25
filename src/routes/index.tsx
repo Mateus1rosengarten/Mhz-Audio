@@ -8,6 +8,7 @@ import { Differentials } from "@/components/sections/Differentials";
 import { Gallery } from "@/components/sections/Gallery";
 import { CallToAction } from "@/components/sections/CallToAction";
 import { Contact } from "@/components/sections/Contact";
+import { FAQ } from "@/components/sections/FAQ";
 
 const title = "Lumen Áudio & Luz | Som, Iluminação, DJs e Bandas para Eventos";
 const description =
@@ -33,11 +34,10 @@ function HomePage() {
       <Navbar />
       <main>
         <Hero />
-        <About />
+        {/* <About /> */}
         <Services />
         <Differentials />
-        <Gallery />
-        <CallToAction />
+        <FAQ />
         <Contact />
       </main>
       <Footer />

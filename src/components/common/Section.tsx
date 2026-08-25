@@ -11,7 +11,7 @@ type SectionProps = {
 
 export function Section({ id, children, className, containerClassName }: SectionProps) {
   return (
-    <section id={id} className={cn("py-24 sm:py-32", className)}>
+    <section id={id} className={cn("py-24 sm:py-16", className)}>
       <Container className={containerClassName}>{children}</Container>
     </section>
   );
@@ -33,23 +33,17 @@ export function SectionHeading({
   className,
 }: SectionHeadingProps) {
   return (
-    <div
-      className={cn(
-        "max-w-2xl",
-        align === "center" && "mx-auto text-center",
-        className,
-      )}
-    >
+    <div className={cn("max-w-2xl", align === "center" && "mx-auto text-center", className)}>
       {eyebrow ? (
         <span className="inline-flex items-center rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium tracking-widest text-muted-foreground uppercase">
           {eyebrow}
         </span>
       ) : null}
-      <h2 className="mt-5 text-3xl leading-tight font-semibold text-balance sm:text-4xl lg:text-[2.75rem]">
+      <h2 className="mt-5 text-3xl leading-tight font-semibold text-balance sm:text-4xl lg:text-5xl">
         {title}
       </h2>
       {description ? (
-        <p className="mt-4 text-base leading-relaxed text-muted-foreground">{description}</p>
+        <p className="mt-4 sm:text-lg leading-relaxed text-muted-foreground">{description}</p>
       ) : null}
     </div>
   );
