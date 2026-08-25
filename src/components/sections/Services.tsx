@@ -49,7 +49,7 @@ export function Services() {
               <span className="mx-auto flex size-11 items-center justify-center rounded-xl bg-primary/12 text-primary transition-colors group-hover:bg-button group-hover:text-primary-foreground">
                 <service.icon className="size-5" />
               </span>
-              <h3 className="mt-3 sm:mt-5 text-base text-lg font-semibold text-center">
+              <h3 className="mt-3 sm:mt-5 text-base sm:text-lg font-semibold text-center">
                 {service.name}
               </h3>
               <p className="mt-3 sm:mt-5 text-sm leading-relaxed text-muted-foreground text-center">

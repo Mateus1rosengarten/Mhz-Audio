@@ -79,14 +79,14 @@ export function FAQ() {
         </div>
 
         <div className="pt-4 sm:pt-0 order-3 flex flex-col gap-8 sm:gap-4 lg:col-start-1 lg:row-start-2 text-center sm:text-left">
-          <h3 className="max-w-2xl text-2xl sm:text-white/80">
+          <h3 className="max-w-2xl text-xl sm:text-2xl sm:text-white/80">
             Não encontrou a resposta que procurava?
           </h3>
 
           <ActionButton
             size="lg"
             onClick={() => openWhatsApp(defaultContactMessage)}
-            className="w-fit mx-auto sm:mx-0"
+            className="w-fit px-4 sm:px-6 mx-auto sm:mx-0"
           >
             {" "}
             <ArrowUpRight />

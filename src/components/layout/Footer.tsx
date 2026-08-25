@@ -8,10 +8,10 @@ export function Footer() {
     <footer className="border-t border-border bg-surface/40">
       <Container className="py-16">
         <div className="grid justify-items-center gap-12 text-center md:grid-cols-3 md:justify-items-start md:text-left">
-          {/* Sobre */}
           <div className="max-w-xs">
-            <Logo />
-
+            <div className="w-full flex justify-center sm:justify-start">
+              <Logo />
+            </div>
             <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
               Som, iluminação, DJs e bandas com estrutura completa para eventos em Curitiba e
               arredores

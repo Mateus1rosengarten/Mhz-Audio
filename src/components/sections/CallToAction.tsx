@@ -22,24 +22,26 @@ export function CallToAction() {
                 completa.
               </p>
 
-              <p className="text-center font-bold text-xl">
+              <p className="text-center font-bold text-base sm:text-xl">
                 {" "}
                 Cuide do que realmente importa para você e deixe tudo isso por nossa conta.
               </p>
             </div>
-            <ActionButton
-              size="lg"
-              variant="light"
-              className="mx-auto mt-9 w-full sm:w-1/2"
-              onClick={() => {
-                document.getElementById("contato")?.scrollIntoView({
-                  behavior: "smooth",
-                });
-              }}
-            >
-              <MessageCircle />
-              Solicitar orçamento via WhatsApp
-            </ActionButton>
+            <div className="mt-9 flex justify-center">
+              <ActionButton
+                size="lg"
+                variant="light"
+                className="w-fit px-5 text-sm sm:w-1/2 sm:px-6 sm:text-base"
+                onClick={() => {
+                  document.getElementById("contato")?.scrollIntoView({
+                    behavior: "smooth",
+                  });
+                }}
+              >
+                <MessageCircle />
+                Solicitar orçamento via WhatsApp
+              </ActionButton>
+            </div>
           </div>
         </Reveal>
       </Container>
