@@ -2,17 +2,14 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
-import { About } from "@/components/sections/About";
 import { Services } from "@/components/sections/Services";
 import { Differentials } from "@/components/sections/Differentials";
-import { Gallery } from "@/components/sections/Gallery";
-import { CallToAction } from "@/components/sections/CallToAction";
 import { Contact } from "@/components/sections/Contact";
 import { FAQ } from "@/components/sections/FAQ";
 
-const title = "Lumen Áudio & Luz | Som, Iluminação, DJs e Bandas para Eventos";
+const title = "Mhz Audio| Som, Iluminação, DJs e Bandas para Eventos em Curitiba e região";
 const description =
-  "Locação de som, iluminação, DJs e bandas para eventos corporativos, casamentos, festas e shows. Estrutura completa e orçamento rápido pelo WhatsApp.";
+  "Locação de equipamento de som, iluminação, DJs e bandas para eventos , casamentos, festas e shows. Curitiba e Reigão";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -34,7 +31,6 @@ function HomePage() {
       <Navbar />
       <main>
         <Hero />
-        {/* <About /> */}
         <Services />
         <Differentials />
         <FAQ />
