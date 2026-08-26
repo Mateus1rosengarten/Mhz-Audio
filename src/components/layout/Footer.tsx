@@ -2,6 +2,7 @@ import { Instagram, Mail, Phone } from "lucide-react";
 import { Container } from "@/components/common/Container";
 import { Logo } from "@/components/common/Logo";
 import { navLinks, siteConfig } from "@/config/site";
+import { DeveloperCredit } from "../sections/DeveloperCredit";
 
 export function Footer() {
   return (
@@ -76,10 +77,13 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 border-t border-border pt-6 text-center md:text-left">
+        <div className="flex flex-col gap-8 sm:gap-0 sm:flex-row justify-between mt-14 border-t border-border pt-6 text-center md:text-left">
           <p className="text-xs text-muted-foreground">
             © {new Date().getFullYear()} {siteConfig.name}. Todos os direitos reservados.
           </p>
+          <div>
+            <DeveloperCredit />
+          </div>
         </div>
       </Container>
     </footer>

@@ -107,7 +107,7 @@ const faqItems: FAQItem[] = [
   {
     question: "Quais serviços vocês oferecem?",
     answer:
-      "Oferecemos sonorização, iluminação e painéis de LED, além de assessoria musical completa, com DJs, bandas e músicos para a recepção.",
+      "Oferecemos sonorização e iluminação além de assessoria musical completa, com DJs, bandas e músicos para a recepção.",
   },
   {
     question: "Posso contratar apenas um dos serviços?",
