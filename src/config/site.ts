@@ -4,8 +4,8 @@ export const siteConfig = {
   tagline: "Estrutura completa para eventos",
   description:
     "Locação de som, iluminação, DJs e bandas para eventos corporativos, casamentos, festas e shows.",
-  whatsappNumber: "554198277760",
-  whatsappDisplay: "(41) 9827-7760",
+  whatsappNumber: "5541998277760",
+  whatsappDisplay: "(41) 99827-7760",
   email: "contatomhzaudio@gmail.com",
   instagram: "https://instagram.com/mhz.solucoes",
   instagramHandle: "@mhz.solucoes",
