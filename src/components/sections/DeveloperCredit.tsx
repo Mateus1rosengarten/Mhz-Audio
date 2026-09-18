@@ -12,7 +12,7 @@ export function DeveloperCredit() {
       rel="noopener noreferrer"
       className="inline-flex items-center gap-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground"
     >
-      Desenvolvido por
+      Website desenvolvido por
       <span className="font-medium text-foreground">MR</span>
     </a>
   );
